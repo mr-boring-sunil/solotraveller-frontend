@@ -22,13 +22,13 @@ function Timeline({ schedule, trip }) {
   return (
     <>
       {/* Budget summary row */}
-      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:10, marginBottom:20 }}>
+      <div className="itinerary-budget-grid">
         {[
           { label:'Daily Budget', val:`₹${Number(trip.budget).toLocaleString()}`, color:'var(--violet-2)' },
           { label:'Today Spend',  val:`₹${dayTotal.toLocaleString()}`,            color: dayTotal > trip.budget ? 'var(--rose)' : 'var(--teal)' },
           { label:'Trip Total',   val:`₹${tripTotal.toLocaleString()}`,            color:'var(--gold)' },
         ].map((b,i) => (
-          <div key={i} style={{ background:'var(--item-bg)', border:'1px solid var(--border)', borderRadius:14, padding:'10px 8px', textAlign:'center' }}>
+          <div key={i} className="itinerary-budget-card">
             <p style={{ fontFamily:'DM Mono', fontWeight:500, fontSize:13, color:b.color, margin:0 }}>{b.val}</p>
             <p style={{ fontSize:9, color:'var(--text-3)', margin:'3px 0 0', fontWeight:600, letterSpacing:'0.06em', textTransform:'uppercase' }}>{b.label}</p>
           </div>
@@ -274,7 +274,7 @@ export default function Itinerary() {
 
         {/* ── Page title ── */}
         <motion.div initial={{ opacity:0, y:-14 }} animate={{ opacity:1, y:0 }} transition={{ duration:.4, ease }}
-          style={{ marginBottom:22, display:'flex', justifyContent:'space-between', alignItems:'flex-end' }}>
+          className="itinerary-header">
           <div>
             <p className="section-label">Your Trips</p>
             <h1 className="t-display" style={{ fontSize:26, marginBottom:0 }}>Itinerary</h1>
@@ -285,9 +285,8 @@ export default function Itinerary() {
         </motion.div>
 
         {/* ── Trip selector strip with delete buttons ── */}
-        <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:.08 }}
-          style={{ marginBottom:20 }}>
-          <div style={{ display:'flex', flexDirection:'column', gap:9 }}>
+        <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:.08 }}>
+          <div className="trip-selector-container">
             {trips.map((trip, i) => {
               const tid     = trip._id || trip.id
               const isActive = tid === selectedTripId
@@ -299,12 +298,10 @@ export default function Itinerary() {
                   key={tid}
                   initial={{ opacity:0, x:-16 }} animate={{ opacity:1, x:0 }}
                   transition={{ delay:.1 + i * .06, ease }}
+                  className="trip-selector-card"
                   style={{
-                    display:'flex', alignItems:'center', gap:12,
-                    padding:'13px 14px', borderRadius:18,
                     background: isActive ? 'rgba(124,106,255,0.1)' : 'rgba(255,255,255,0.025)',
                     border: `1px solid ${isActive ? 'rgba(124,106,255,0.4)' : 'var(--border)'}`,
-                    cursor:'pointer', transition:'all .2s',
                   }}
                   onClick={() => { setSelectedTripId(tid); setConfirmDelete(null) }}
                 >

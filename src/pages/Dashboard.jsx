@@ -276,7 +276,7 @@ export default function Dashboard() {
             )}
 
             {/* Stats row — 3 equal columns */}
-            <motion.div {...f(0.12)} style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:10, marginBottom:16 }}>
+            <motion.div {...f(0.12)} className="dash-stats-grid">
               {[
                 { emoji:'✈️', val:trips.length,   lbl:'Trips',  bg:'rgba(124,106,255,0.14)', bdr:'rgba(124,106,255,0.2)', cls:'grad-violet' },
                 { emoji:'📅', val:totalDays,       lbl:'Days',   bg:'rgba(45,212,191,0.11)',  bdr:'rgba(45,212,191,0.2)',  cls:'grad-teal' },
@@ -293,7 +293,7 @@ export default function Dashboard() {
             {/* Quick actions — 4 tiles in a row */}
             <motion.div {...f(0.17)}>
               <span className="section-label">Quick Actions</span>
-              <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:10 }}>
+              <div className="quick-actions-grid">
                 {[
                   { icon:'fa-plus',          label:'New Trip',  color:'var(--violet)', bg:'rgba(124,106,255,0.14)', action:()=>navigate('/questionnaire') },
                   { icon:'fa-shield-halved', label:'Safety',    color:'var(--rose)',   bg:'rgba(251,113,133,0.14)', action:()=>navigate('/safety') },

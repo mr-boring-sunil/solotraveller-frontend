@@ -8,6 +8,7 @@ const V = {
 }
 export default function QuestionCard({ question, answer, onSelect, direction, stepKey }) {
   const cols = question.options?.length === 3 ? 3 : 2
+  const colClass = cols === 3 ? 'col-12 col-md-4' : 'col-12 col-md-6'
   return (
     <AnimatePresence mode="wait" custom={direction}>
       <motion.div key={stepKey} custom={direction} variants={V} initial="enter" animate="center" exit="exit" transition={{ duration:.35, ease:[.4,0,.2,1] }}>
@@ -18,7 +19,7 @@ export default function QuestionCard({ question, answer, onSelect, direction, st
         {question.type==='options' ? (
           <div className="row g-3">
             {question.options.map((opt,i) => (
-              <div key={opt.id} className={`col-${12/cols}`}>
+              <div key={opt.id} className={colClass}>
                 <OptionCard option={opt} isSelected={answer===opt.id} onSelect={onSelect} index={i} />
               </div>
             ))}
