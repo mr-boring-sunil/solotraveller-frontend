@@ -316,18 +316,30 @@ export default function Itinerary() {
                   <div style={{ flex:1, minWidth:0 }}>
                     <p className="t-h3" style={{ margin:0, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{trip.destination}</p>
                     <div style={{ display:'flex', alignItems:'center', gap:8, marginTop:3 }}>
-                      <p className="t-small" style={{ margin:0 }}>{trip.days}d · {trip.tripType}</p>
+                      <p className="t-small text-truncate" style={{ margin:0 }}>{trip.days}d · {trip.tripType}</p>
                       {getTripItinerary(tid).length > 0 && (
-                        <span className="pill pill-teal" style={{ fontSize:8, padding:'1px 6px' }}>Saved</span>
+                        <span className="pill pill-teal card-status-pill" style={{ fontSize:8, padding:'1px 6px' }}>Saved</span>
                       )}
                       {hasUnsavedItinerary(tid) && (
-                        <span className="pill pill-gold" style={{ fontSize:8, padding:'1px 6px' }}>Preview</span>
+                        <span className="pill pill-gold card-status-pill" style={{ fontSize:8, padding:'1px 6px' }}>Preview</span>
+                      )}
+                    </div>
+                    {/* Mobile-only stacked status/saved badges */}
+                    <div className="card-mobile-badges">
+                      <span className={`pill ${trip.status==='active'?'pill-teal':trip.status==='upcoming'?'pill-violet':'pill-dim'}`} style={{ fontSize:7, padding:'1px 5px' }}>
+                        {trip.status === 'active' ? 'ongoing' : trip.status === 'past' ? 'completed' : trip.status}
+                      </span>
+                      {getTripItinerary(tid).length > 0 && (
+                        <span className="pill pill-teal" style={{ fontSize:7, padding:'1px 5px' }}>Saved</span>
+                      )}
+                      {hasUnsavedItinerary(tid) && (
+                        <span className="pill pill-gold" style={{ fontSize:7, padding:'1px 5px' }}>Preview</span>
                       )}
                     </div>
                   </div>
 
-                  {/* Status pill */}
-                  <span className={`pill ${trip.status==='active'?'pill-teal':trip.status==='upcoming'?'pill-violet':'pill-dim'}`}
+                  {/* Status pill (Desktop only) */}
+                  <span className={`pill ${trip.status==='active'?'pill-teal':trip.status==='upcoming'?'pill-violet':'pill-dim'} card-status-pill`}
                     style={{ fontSize:9, flexShrink:0 }}>
                     {trip.status === 'active' ? 'ongoing' : trip.status === 'past' ? 'completed' : trip.status}
                   </span>

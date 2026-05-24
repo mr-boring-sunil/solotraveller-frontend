@@ -32,7 +32,7 @@ export default function Login() {
   return (
     <div className="page">
       {/* Top-Left Corner Branding Logo */}
-      <div style={{ position: 'absolute', top: '24px', left: '24px', zIndex: 1000, display: 'flex', alignItems: 'center', gap: 8 }}>
+      <div className="auth-logo">
         <span style={{ fontSize: 24 }}>✈️</span>
         <span style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: 18, color: 'var(--text)', letterSpacing: '-0.02em' }}>SoloTraveller</span>
       </div>

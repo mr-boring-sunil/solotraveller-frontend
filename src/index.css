@@ -618,7 +618,7 @@ input, select { font-family: inherit }
 
 @media (max-width: 900px) {
   .auth-split-container {
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 40px;
     padding: 24px 12px;
   }
@@ -689,5 +689,45 @@ input, select { font-family: inherit }
   100% {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(45, 212, 191, 0);
+  }
+}
+
+/* ── Auth Logo ── */
+.auth-logo {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+@media (max-width: 900px) {
+  .auth-logo {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 20px auto 32px !important;
+    justify-content: center;
+    width: fit-content;
+  }
+}
+
+/* ── Responsive Itinerary Card Badges ── */
+.card-status-pill {
+  display: inline-block;
+}
+.card-mobile-badges {
+  display: none;
+}
+@media (max-width: 600px) {
+  .card-status-pill {
+    display: none !important;
+  }
+  .card-mobile-badges {
+    display: flex !important;
+    gap: 4px;
+    margin-top: 4px;
+    flex-wrap: wrap;
   }
 }
